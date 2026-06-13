@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import config from '../data/config.json';
+
+const title = `Guide Technique Installation Borne de Recharge Domicile`;
+const description = `Toutes les étapes techniques pour réussir l'installation de votre wallbox à domicile dans le Rhône : câblage, disjoncteur, Linky et normes de sécurité.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Guide Technique Installation" }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup 
+    slot="head" 
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+    breadcrumbItems={breadcrumbItems}
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section class="static-page-section" style="padding: 50px 0 80px; background-color: var(--bg);">
+    <div class="container">
+      <div class="two-column-layout">
+        
+        <!-- Main Content -->
+        <div class="static-main-content rich-text" style="background: var(--card-bg); padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+          <h1 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 20px;">Guide Technique Complet : Installer une Wallbox chez soi dans le Rhône (69)</h1>
+          
+          <p>
+            L'installation d'une infrastructure de recharge pour véhicule électrique (IRVE) n'est pas un bricolage de dimanche. Elle requiert des compétences en électricité de puissance, une connaissance approfondie des normes de sécurité française NF C 15-100, et une qualification professionnelle obligatoire. Ce guide technique détaille chaque étape du chantier pour que vous sachiez exactement à quoi vous attendre lorsque l'électricien viendra poser votre borne dans le Rhône.
+          </p>
+
+          <blockquote style="border-left: 4px solid var(--accent); background: var(--primary-light); padding: 15px 20px; margin: 25px 0; border-radius: var(--radius-sm); color: var(--primary);">
+            <strong>⚠️ Rappel légal :</strong> Depuis le décret du 12 janvier 2017, toute borne de recharge d'une puissance supérieure à 3,7 kW doit être installée par un <strong>électricien certifié IRVE</strong>. C'est la condition sine qua non pour bénéficier des aides financières et être couvert par votre assurance habitation.
+          </blockquote>
+
+          <h2>1. Le Diagnostic Préalable de votre Installation Électrique</h2>
+          <p>
+            Avant toute pose, l'électricien IRVE effectue une visite technique obligatoire de votre logement pour vérifier trois points critiques :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>La qualité de la prise de terre :</strong> La résistance de la boucle de terre ne doit pas dépasser <strong>100 Ohms</strong>. Au-delà, le véhicule électrique refusera de démarrer la charge par sécurité (le BMS détecte un défaut d'isolement). Dans les habitations anciennes ou rénovées du Rhône, il est parfois nécessaire d'ajouter un piquet de terre supplémentaire.</li>
+            <li><strong>L'état du tableau électrique :</strong> Le tableau doit disposer de rails DIN libres pour accueillir les protections dédiées. Si votre tableau est saturé ou hors normes, un remplacement ou une extension sera nécessaire.</li>
+            <li><strong>Le type d'alimentation :</strong> <a href="/guides/passage-triphase-enedis-rhone-tarifs/" style="color: var(--secondary); font-weight: 700;">Monophasé ou triphasé</a> ? Cela détermine la puissance maximale de votre future borne et les travaux à prévoir sur votre compteur Enedis.</li>
+          </ul>
+
+          <h2>2. Le Schéma de Câblage Électrique IRVE</h2>
+          <p>
+            Une borne de recharge ne se branche jamais sur un circuit existant de la maison. Elle nécessite une <strong>ligne dédiée</strong> tirée directement du tableau principal :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>Le Câble d'Alimentation :</strong> Section minimale de <strong>10 mm²</strong> en cuivre pour une borne de 7,4 kW (monophasée) avec moins de 15 mètres de distance. Au-delà, une section de <strong>16 mm²</strong> est requise pour limiter les chutes de tension.</li>
+            <li><strong>L'Interrupteur Différentiel dédié :</strong> Type <strong>F</strong> (anciennement A-EV) obligatoire, sensibilité 30 mA. Ce différentiel spécial est capable de détecter les courants de fuite à composante continue, spécifiques aux chargeurs de batteries.</li>
+            <li><strong>Le Disjoncteur Divisionnaire :</strong> Calibre 40A en monophasé pour une wallbox 32A, courbe C, protégeant la ligne contre les surcharges thermiques et les courts-circuits.</li>
+          </ul>
+
+          <h2>3. Le Choix de la Puissance de Charge</h2>
+          <p>
+            Le choix entre une borne de 7,4 kW, 11 kW ou 22 kW dépend de votre usage quotidien, du chargeur embarqué de votre véhicule, et de votre installation électrique.
+          </p>
+          <p>
+            En résumé, pour 90 % des foyers du Rhône, la <strong>wallbox 7,4 kW en monophasé</strong> est largement suffisante. Elle permet de recharger complètement une batterie standard de 60 kWh en une nuit (environ 7 à 8 heures). Pour connaître le budget détaillé de chaque option, rendez-vous sur notre <a href="/tarifs/" style="color: var(--secondary); font-weight: 700;">page tarifs</a>.
+          </p>
+
+          <h2>4. Le Délestage Dynamique avec Compteur Linky</h2>
+          <p>
+            Le principal risque technique lors de la charge rapide à 7,4 kW est la disjonction générale de votre compteur Linky (lorsque la voiture charge en même temps que le four, les plaques à induction et le chauffe-eau).
+          </p>
+          <p>
+            La solution : installer un module de <strong>délestage dynamique</strong>. Branché sur la sortie TIC de votre compteur Linky, il communique en temps réel la consommation totale de la maison à la borne, qui ajuste sa puissance instantanément pour ne jamais dépasser la puissance souscrite. Vous évitez ainsi de souscrire un abonnement d'électricité surdimensionné.
+          </p>
+
+          <h2>5. Les Normes de Sécurité & Indices de Protection</h2>
+          <p>
+            Pour les bornes posées en extérieur, la borne doit présenter des indices de résistance élevés pour faire face aux conditions climatiques :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>Indice IP54 au minimum :</strong> Protection complète contre les infiltrations de poussière fine et les jets d'eau provenant de toutes directions. Les <a href="/guides/comparatif-marques-wallbox-2026/" style="color: var(--secondary); font-weight: 700;">meilleures wallbox 2026</a> comme la Hager Witty ou Schneider EVlink offrent un IP55/IK10.</li>
+            <li><strong>Indice IK08 ou IK10 :</strong> Résistance mécanique aux chocs et actes de vandalisme accidentels.</li>
+            <li><strong>Obturateurs de sécurité (Prise type 2S) :</strong> La norme NF C 15-100 impose l'utilisation de prises avec obturateurs de sécurité sur les bornes non verrouillées dans les parkings ou garages.</li>
+          </ul>
+
+          <h2>6. Les Étapes d'un Chantier d'Installation Standard</h2>
+          <ol style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <li><strong>Audit et Visite technique :</strong> Vérification de l'état de la prise de terre, du tableau principal et de la puissance disponible sur votre abonnement Enedis.</li>
+            <li><strong>Pose et Fixation :</strong> Fixation murale de la wallbox sur le mur du garage ou installation sur un pied de borne dans l'allée.</li>
+            <li><strong>Passage de câbles :</strong> Passage du câble d'alimentation 3G10mm² sous goulottes esthétiques ou dans une tranchée extérieure sous fourreau rouge.</li>
+            <li><strong>Raccordements & Mise en service :</strong> Connexion des modules de sécurité dans le tableau, raccordement du câble de charge et test de bon fonctionnement.</li>
+            <li><strong>Attestation IRVE :</strong> Remise d'une attestation de conformité IRVE indispensable pour débloquer votre <a href="/aides-advenir/" style="color: var(--secondary); font-weight: 700;">crédit d'impôt et vos aides financières</a>.</li>
+          </ol>
+
+          <div style="background: var(--primary-light); border: 1.5px solid var(--border-color); padding: 25px; border-radius: var(--radius-md); margin-top: 40px;">
+            <h3 style="margin-top: 0; color: var(--primary); font-size: 17px; font-weight: 700; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">📚 Pour aller plus loin</h3>
+            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; margin-bottom: 0;">
+              <li>⚡ <a href="/guides/comparatif-marques-wallbox-2026/" style="color: var(--secondary); font-weight: 700;">Comparatif Marques Wallbox 2026</a> — Quelle borne choisir ?</li>
+              <li>🔧 <a href="/guides/passage-triphase-enedis-rhone-tarifs/" style="color: var(--secondary); font-weight: 700;">Monophasé ou Triphasé</a> — Adapter votre compteur Enedis</li>
+              <li>💰 <a href="/guides/prix-installation-borne-recharge-rhone-2026/" style="color: var(--secondary); font-weight: 700;">Prix d'installation dans le Rhône 2026</a> — Budget complet</li>
+              <li>🚗 <a href="/guides/zfe-lyon-crit-air-borne-recharge-domicile/" style="color: var(--secondary); font-weight: 700;">ZFE Grand Lyon et Bornes</a> — Comment la ZFE impacte votre quotidien</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="static-sidebar">
+          <div class="sidebar-widget bg-purple-gradient">
+            <h3>🧮 Devis électricien IRVE</h3>
+            <p>Comparez gratuitement 3 électriciens qualifiés IRVE de votre secteur dans le Rhône. Devis gratuit sans engagement.</p>
+            <a href="/devis/" class="sidebar-cta-gold">Demander mon étude →</a>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>⚠️ Risque Sinistre</h3>
+            <p style="font-size: 13px;">Brancher une voiture sur une prise standard non renforcée pendant plus de 10 heures d'affilée présente un risque réel de surchauffe et de départ de feu. L'utilisation d'une ligne dédiée sécurisée est indispensable.</p>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>📊 Combien ça coûte ?</h3>
+            <p style="font-size: 13px;">Le prix d'une installation complète dans le Rhône varie de 1 300 € à 3 800 € TTC selon la puissance et la distance de câblage.</p>
+            <a href="/tarifs/" style="color: var(--secondary); font-weight: 700; font-size: 13px;">Voir la grille tarifaire →</a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @media (max-width: 992px) {
+    .two-column-layout {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
