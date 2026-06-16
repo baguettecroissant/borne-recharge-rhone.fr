@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /confirmation/
 
 Sitemap: https://borne-recharge-rhone.fr/sitemap-index.xml
